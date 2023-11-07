@@ -5,19 +5,19 @@ services:
       context: ./Docker-files/db
     image: saifdoc/db
     ports:
-      -"3306:3306"
+      - 3306:3306 
     volumes:
-      -vprodbdata:/var/lib/mysql
+      - vprodbdata:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=vprodbpass
   vprocacahe01:
     image: memcached
     ports:
-      -"11211:11211"
+      - 11211:11211
   vpromq01:
     image: rabbitmq
     ports:
-      -"15672:15672"
+      - 15672:15672
     environment:
       - RABBITMQ_DEFAULT_USER=guest
       - RABBITMQ_DEFAULT_PASS=guest
@@ -27,16 +27,16 @@ services:
       context: ./Docker-files/app
     image: saifdoc/app
     ports:
-      -"8080:8080"
+      - 8080:8080
     volumes:
-      -vproapp:/var/lib/mysql
+      - vproappdata:/var/lib/mysql
    
   vproweb:
     build:
       context: ./Docker-files/web
     image: saifdoc/web
     ports:
-      -"80:80"
+      - 80:80
 volumes:
   vprodbdata: {}
   vproappdata: {}
